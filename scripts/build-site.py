@@ -7,7 +7,14 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / "_site"
-ASSET_DIRECTORIES = {"css", "js", "Images", "docs"}
+ASSET_DIRECTORIES = {
+    "css", "js", "Images", "docs", "Individual Thesis", "Presentations",
+    "Proposals", "UI Dashboards",
+}
+ROOT_FILES = {
+    "index.html", "Final_Thesis_Draft.pdf", "Topic Assessment Form.pdf",
+    "A_Multi_Stage_Artificial_Intelligence_Framework_for_Proactive_Livestock_Health_Monitoring_and_Outbreak_Surveillance.pdf",
+}
 
 
 def main():
@@ -16,7 +23,7 @@ def main():
     ).decode("utf-8").split("\0")
     assets = [
         Path(name) for name in tracked
-        if name and (name == "index.html" or Path(name).parts[0] in ASSET_DIRECTORIES)
+        if name and (name in ROOT_FILES or Path(name).parts[0] in ASSET_DIRECTORIES)
     ]
     if Path("index.html") not in assets:
         raise SystemExit("Track index.html with git add before packaging the website.")
