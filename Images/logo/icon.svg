@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="adrsLogoGrad" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#2FB3A3"/>
+      <stop offset="50%" stop-color="#1B998B"/>
+      <stop offset="100%" stop-color="#E9A23B"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14382A" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0B1F17" stop-opacity="0.98"/>
+    </linearGradient>
+    <filter id="adrsGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Protective Hex Shield -->
+  <path d="M60 6 L106 28 V70 C106 94 84 110 60 116 C36 110 14 94 14 70 V28 Z" 
+        fill="url(#shieldGrad)" stroke="#2FB3A3" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Subtle Inner Topographic Rings -->
+  <path d="M60 18 C80 18 96 32 96 50 C96 74 76 96 60 102 C44 96 24 74 24 50 C24 32 40 18 60 18 Z" 
+        stroke="#8FB59B" stroke-width="1" stroke-dasharray="2 3" stroke-opacity="0.25" fill="none"/>
+
+  <!-- Surveillance Radar Reticle Lines -->
+  <line x1="60" y1="12" x2="60" y2="108" stroke="#8FB59B" stroke-width="0.75" stroke-opacity="0.2"/>
+  <line x1="20" y1="60" x2="100" y2="60" stroke="#8FB59B" stroke-width="0.75" stroke-opacity="0.2"/>
+
+  <!-- Stylized Bovine Profile + Pulse Geometry -->
+  <g transform="translate(60, 58) scale(0.85) translate(-60, -58)">
+    <!-- Horns / Crown -->
+    <path d="M38 42 C40 34 46 26 56 30 C58 36 55 42 50 44" 
+          stroke="url(#adrsLogoGrad)" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M82 42 C80 34 74 26 64 30 C62 36 65 42 70 44" 
+          stroke="url(#adrsLogoGrad)" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+    <!-- Head & Muzzle Shield -->
+    <path d="M48 44 L60 38 L72 44 L68 62 L60 76 L52 62 Z" 
+          fill="#14382A" stroke="url(#adrsLogoGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+    
+    <!-- Ears -->
+    <path d="M42 46 L32 50 L40 56 Z" fill="#2FB3A3" fill-opacity="0.7"/>
+    <path d="M78 46 L88 50 L80 56 Z" fill="#2FB3A3" fill-opacity="0.7"/>
+
+    <!-- Surveillance Node Target / Muzzle Ring -->
+    <circle cx="60" cy="74" r="5" fill="#E9A23B" filter="url(#adrsGlow)"/>
+    <circle cx="60" cy="74" r="9" stroke="#E9A23B" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="2 2"/>
+    
+    <!-- Clinical ECG Pulse Line Crossing Base -->
+    <path d="M30 68 L44 68 L48 60 L54 78 L58 64 L62 70 L66 68 L90 68" 
+          stroke="#2FB3A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- High-Precision Status Beacon at Peak -->
+  <circle cx="60" cy="18" r="2.5" fill="#2FB3A3"/>
+</svg>

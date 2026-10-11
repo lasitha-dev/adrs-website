@@ -1,0 +1,34 @@
+# Local publication checkouts, scratch work, and generated previews
+/sites/
+/scratch/
+/_site/
+
+# Local briefs and the duplicate source document
+/ADRS_Website_Agent_Context.md
+/ADRS_Website_Master_Prompt.md
+/Group_Thesis_Completed.docx
+
+# Generated sample documents; approved originals can be added separately
+/docs/ADRS_Topic_Assessment.pdf
+/docs/ADRS_Project_Charter.pdf
+/docs/ADRS_Project_Proposal.pdf
+/docs/ADRS_Status_Document_1.pdf
+/docs/ADRS_Status_Document_2.pdf
+/docs/ADRS_Research_Paper.pdf
+/docs/ADRS_Proposal_Presentation.pdf
+/docs/ADRS_Progress_Presentation_1.pdf
+/docs/ADRS_Progress_Presentation_2.pdf
+
+# Credentials and local tooling
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+.vscode/
+node_modules/
+__pycache__/
+*.pyc
+Thumbs.db
+.DS_Store
