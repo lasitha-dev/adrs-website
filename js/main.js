@@ -1,6 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
   const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
   const assetURL = path => path.split('/').map(encodeURIComponent).join('/');
+  const researchDialog = document.querySelector('#research-dialog');
+  let researchTrigger;
+  document.querySelectorAll('[data-research]').forEach(button => button.addEventListener('click', () => {
+    const topic = CONFIG.RESEARCH_TOPICS[button.dataset.research];
+    researchTrigger = button;
+    document.querySelector('#research-dialog-title').textContent = topic.title;
+    document.querySelector('#research-dialog-intro').textContent = topic.intro;
+    const listTag = topic.ordered ? 'ol' : 'ul';
+    document.querySelector('#research-dialog-content').innerHTML = `<${listTag} class="research-points${topic.ordered ? ' research-steps' : ''}">${topic.items.map(item => `<li><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.text)}</p>${item.tag ? `<p class="research-response">${escapeHTML(item.tag)}</p>` : ''}</li>`).join('')}</${listTag}><p class="research-takeaway">${escapeHTML(topic.takeaway)}</p><div class="research-sources"><h3>Read the source documents</h3>${topic.sources.map(source => `<a href="${escapeHTML(assetURL(source.url))}#page=${source.page}" target="_blank" rel="noopener">${escapeHTML(source.label)} <span aria-hidden="true">↗</span><span class="sr-only"> (PDF, opens in a new tab)</span></a>`).join('')}</div>`;
+    researchDialog.showModal();
+    researchDialog.scrollTop = 0;
+  }));
+  researchDialog.addEventListener('close', () => researchTrigger?.focus({ preventScroll: true }));
+  researchDialog.addEventListener('click', event => {
+    if (event.target !== researchDialog) return;
+    const rect = researchDialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) researchDialog.close();
+  });
+
+  const techGroups = [...new Set(CONFIG.TECH_STACK.map(tech => tech.group))];
+  document.querySelector('#tech-groups').innerHTML = techGroups.map(group => `<div class="tech-group"><h3>${escapeHTML(group)}</h3><ul>${CONFIG.TECH_STACK.filter(tech => tech.group === group).map(tech => `<li class="tech-item"><span class="tech-logo"><img src="${escapeHTML(assetURL(`Images/tech/${tech.logo}`))}" alt="${escapeHTML(tech.name)} logo" width="36" height="36" loading="lazy"></span><div><h4>${escapeHTML(tech.name)}</h4><p>${escapeHTML(tech.role)}</p></div></li>`).join('')}</ul></div>`).join('');
+
+  const contactForm = document.querySelector('#contact-form');
+  const contactSubmit = document.querySelector('#contact-submit');
+  const contactStatus = document.querySelector('#contact-status');
+  contactForm.elements.namedItem('access_key').defaultValue = CONFIG.CONTACT.accessKey.trim();
+  contactForm.elements.namedItem('subject').defaultValue = CONFIG.CONTACT.subject;
+  contactSubmit.disabled = false;
+  let sending = false;
+  const showContactStatus = (message, state) => {
+    contactStatus.textContent = message;
+    contactStatus.dataset.state = state;
+  };
+  contactForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (sending || !contactForm.reportValidity()) return;
+    const payload = Object.fromEntries(new FormData(contactForm));
+    if (payload.botcheck) return;
+    if (!payload.access_key) {
+      showContactStatus('The contact form is not available yet. Please try again later.', 'error');
+      return;
+    }
+    // The recipient is determined by the Web3Forms key, never by a visitor field.
+    payload.replyto = payload.email;
+    sending = true;
+    contactSubmit.disabled = true;
+    contactSubmit.textContent = 'Sending…';
+    contactForm.setAttribute('aria-busy', 'true');
+    showContactStatus('Sending your message…', 'pending');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) throw new Error('Submission rejected');
+      contactForm.reset();
+      showContactStatus('Thank you! Your message has been sent to the ADRS research team.', 'success');
+    } catch (error) {
+      showContactStatus(error.name === 'AbortError'
+        ? 'The request timed out. Your message is still here. Please check your connection before trying again.'
+        : 'We could not confirm that your message was sent. Your message is still here; please try again later.', 'error');
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      contactSubmit.disabled = false;
+      contactSubmit.innerHTML = 'Send message <span aria-hidden="true">↗</span>';
+      contactForm.removeAttribute('aria-busy');
+    }
+  });
   const nav = document.querySelector('#site-nav');
   const toggle = document.querySelector('.menu-toggle');
   const closeMenu = () => {

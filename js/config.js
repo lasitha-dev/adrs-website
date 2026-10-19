@@ -1,6 +1,72 @@
 /* Research evidence: supplied group report and individual theses, October 2026.
  * The research paper retains its own evaluation scope; screen values are examples. */
 const CONFIG = {
+  // Web3Forms public access key for the receiving inbox. See README.md for setup.
+  "CONTACT": { "accessKey": "75d9a8b2-f442-45c7-86c0-c60a538a4e99", "subject": "New enquiry from the ADRS research website" },
+  "RESEARCH_TOPICS": {
+    "gaps": {
+      "title": "Research Gaps",
+      "intro": "The missing link is a clear path from a farmer’s first concern to veterinary review and wider disease surveillance.",
+      "items": [
+        { "title": "Everyday health needs context", "text": "A drop in milk yield can reflect heat stress or illness. Daily records, body condition and weather need to be considered together." },
+        { "title": "Photographs provide only part of the evidence", "text": "Image models may struggle with unfamiliar farms, lighting and backgrounds. A predicted disease label still needs veterinary review." },
+        { "title": "A map does not explain transmission", "text": "Nearby outbreak reports reveal patterns, but incomplete locations and reporting delays limit what clusters and direction arrows can tell us." },
+        { "title": "Risk estimates need realistic evaluation", "text": "Disease records are sparse and uneven. Models need testing on later periods, with a clear distinction between current conditions and future estimates using historical climate." }
+      ],
+      "takeaway": "ADRS connects these evidence streams while keeping AI suggestions separate from confirmed clinical records.",
+      "sources": [{ "label": "Group report · chapter 3", "url": "Final_Thesis_Draft.pdf", "page": 15 }]
+    },
+    "literature": {
+      "title": "Literature Review",
+      "intro": "The supplied theses review four areas of existing work. Each offers useful tools, alongside limits that shaped ADRS.",
+      "items": [
+        { "title": "Computer vision", "text": "Earlier work uses image classifiers, object detectors and lesion masks to assess cattle photographs. Curated image results do not establish reliability on unfamiliar farms.", "tag": "ADRS response: detect, classify and outline lesions for review." },
+        { "title": "Wellness and body condition", "text": "Sensor systems and 3D cameras support monitoring, but cost can restrict smallholder use. Research on ordinary images, time-series data and heat stress supports a more accessible approach.", "tag": "ADRS response: combine photographs, daily logs and thermal context." },
+        { "title": "Spatial surveillance", "text": "WAHIS and FAO EMPRES-i provide reported disease events. ST-DBSCAN groups events by place and time; distance-based scoring adds local context. Neither proves a transmission route.", "tag": "ADRS response: show traceable records and relative spatial rankings." },
+        { "title": "Climate and outbreak risk", "text": "Surveillance and statistical models help identify unusual disease activity. Sparse reports, rare outbreaks and time-dependent data make validation, calibration and clear explanations essential.", "tag": "ADRS response: evaluate disease-specific district-month models over time." }
+      ],
+      "takeaway": "This is a short summary of the reviews in the project documents; results from different studies are not directly interchangeable.",
+      "sources": [
+        { "label": "Smart diagnosis · chapter 2", "url": "Individual Thesis/Individual Thesis Smart Diagnosis.pdf", "page": 21 },
+        { "label": "Wellness triage · chapter 2", "url": "Individual Thesis/Individual Thesis Wellness Triage.pdf", "page": 17 },
+        { "label": "Geospatial analysis · chapter 2", "url": "Individual Thesis/Individual Thesis Geospatial Clustering.pdf", "page": 15 },
+        { "label": "District risk · chapter 2", "url": "Individual Thesis/Individual Thesis Seasonal Forecasting.pdf", "page": 24 }
+      ]
+    },
+    "methodology": {
+      "title": "Methodology",
+      "intro": "Four research streams share one veterinary review workflow. Here is the process in five simple steps.",
+      "ordered": true,
+      "items": [
+        { "title": "Collect and prepare evidence", "text": "Organise cattle photographs, daily health logs, historical disease reports and climate data. Check identifiers, dates, locations and source quality." },
+        { "title": "Assess the individual animal", "text": "Use YOLOv8, a Vision Transformer and a ResNet50 mask head for image assessment. Combine Random Forest monitoring, image-based body condition and seven-day LSTM triage for wellness." },
+        { "title": "Keep veterinary confirmation central", "text": "Present animal history and model outputs as supporting evidence. A veterinary officer reviews a suspected case before it becomes a confirmed clinical record." },
+        { "title": "Explore the wider picture", "text": "Use event clusters and distance-based spatial rankings for geographic context. Estimate district-month FMD and LSD risk using disease-specific statistical models and climate information." },
+        { "title": "Evaluate each part and document limits", "text": "Measure image accuracy and mask overlap, test wellness with engineered or simulated profiles, and assess spatial rankings retrospectively. Test district-risk models across time-separated periods." }
+      ],
+      "takeaway": "Component evaluation supports a research prototype. Prospective clinical trials and complete end-to-end validation remain future work.",
+      "sources": [
+        { "label": "Group report · solution structure", "url": "Final_Thesis_Draft.pdf", "page": 21 },
+        { "label": "Group report · evaluation", "url": "Final_Thesis_Draft.pdf", "page": 53 },
+        { "label": "Geospatial thesis · methodology", "url": "Individual Thesis/Individual Thesis Geospatial Clustering.pdf", "page": 19 }
+      ]
+    }
+  },
+  // Add a technology here with its local logo to extend the section.
+  "TECH_STACK": [
+    { "name": "React", "role": "Application interfaces", "logo": "react.svg", "group": "Interface" },
+    { "name": "Vite", "role": "Frontend development & builds", "logo": "vite.svg", "group": "Interface" },
+    { "name": "Tailwind CSS", "role": "Responsive styling", "logo": "tailwindcss.svg", "group": "Interface" },
+    { "name": "Python", "role": "Research & backend processing", "logo": "python.svg", "group": "Services & data" },
+    { "name": "FastAPI", "role": "Validated application APIs", "logo": "fastapi.svg", "group": "Services & data" },
+    { "name": "MongoDB", "role": "Farm, case & user records", "logo": "mongodb.svg", "group": "Services & data" },
+    { "name": "TensorFlow", "role": "Wellness & mask models", "logo": "tensorflow.svg", "group": "Machine learning" },
+    { "name": "PyTorch", "role": "Detection & image classification", "logo": "pytorch.svg", "group": "Machine learning" },
+    { "name": "scikit-learn", "role": "Monitoring & risk models", "logo": "scikitlearn.svg", "group": "Machine learning" },
+    { "name": "OpenCV", "role": "Image processing", "logo": "opencv.svg", "group": "Analysis & mapping" },
+    { "name": "Pandas", "role": "Tabular data preparation", "logo": "pandas.svg", "group": "Analysis & mapping" },
+    { "name": "Leaflet", "role": "Interactive map views", "logo": "leaflet.svg", "group": "Analysis & mapping" }
+  ],
   "COMPONENTS": [
     {
       "number": "01",

@@ -8,7 +8,37 @@ Source repository: [lasitha-dev/adrs-website](https://github.com/lasitha-dev/adr
 
 Existing Sites showcase: [View ADRS on Sites](https://adrs-research-r26.cheekycedar16.chatgpt.site)
 
-The website presents the overall project, its four components, a research journey, four component dashboards, the searchable document archive and the team. The forest green and warm paper theme preserves the agricultural and clinical character of the original draft. Technical evidence sits in expandable panels to keep the page readable.
+The website presents the overall project, its four components, a research journey, four component dashboards, the searchable document archive, technology stack, team and contact form. Research Gaps, Literature Review and Methodology open as short, keyboard-accessible dialogs with links to the supplied PDFs. The forest green and warm paper theme preserves the agricultural and clinical character of the original draft. Technical evidence sits in expandable panels to keep the page readable.
+
+## Contact email setup (Web3Forms)
+
+The contact form is integrated with Web3Forms and **configured with the public access key supplied for the receiving inbox**. Before relying on it, submit a test message and check that inbox. If you need to replace the key or change the destination, follow these steps. An empty key shows an unavailable message and does not send a request or claim success.
+
+1. Visit [Web3Forms](https://web3forms.com/), create a form/access key using the email address that should receive ADRS enquiries, and complete the email verification steps.
+2. In `js/config.js`, replace the empty `CONTACT.accessKey` string with that form's public access key:
+
+   ```js
+   "CONTACT": {
+     "accessKey": "YOUR_WEB3FORMS_ACCESS_KEY",
+     "subject": "New enquiry from the ADRS research website"
+   },
+   ```
+
+3. Save and preview with `python -m http.server 8765 --bind 127.0.0.1`. Open `http://127.0.0.1:8765/#contact`, enter a test name, your email and a clearly marked test message, then send it.
+4. Verify that the receiving inbox gets the email (check spam too). Use **Reply** to confirm it addresses the visitor's email. A successful API response alone does not verify inbox delivery.
+5. Publish through the existing Vercel/GitHub workflow described below and repeat the check on the production website. If your Web3Forms form restricts allowed domains, include each production host where you use this form.
+
+Web3Forms determines the recipient from the access key; an additional recipient email field is unnecessary. The access key is intended for frontend use and will be visible in the page's JavaScript. Do not use an account password, private API token or SMTP credential. No backend, `.env` loader or paid email server is needed for this basic integration. See the official [setup guide](https://docs.web3forms.com/getting-started/installation) and [API reference](https://docs.web3forms.com/getting-started/api-reference).
+
+The form validates required fields and email format, includes a hidden honeypot, blocks duplicate submissions while sending, and displays success only after Web3Forms confirms it. Failures and timeouts preserve the visitor's message. Browser checks use simulated responses; live inbox delivery remains unverified until a message is submitted and received using the configured key.
+
+## Research summaries and tech stack
+
+Edit `CONFIG.RESEARCH_TOPICS` in `js/config.js` to update the three popup summaries and their PDF page links. The gaps follow group-report chapter 3; the literature summaries follow chapter 2 of each individual thesis; the methodology follows the documented component workflows and evaluation limits. Keep the distinction between simulated wellness evaluation, retrospective spatial ranking and clinically validated deployment.
+
+Edit `CONFIG.TECH_STACK` to add or change technology cards. Each entry has a name, role, group and logo filename in `Images/tech/`. The current entries follow the group report's section 6.1, PDF pages 47–48, and describe the research application. The showcase itself remains plain HTML, CSS and JavaScript.
+
+Logos are stored locally, so viewing the technology section does not depend on an image CDN. Eleven logos come from [Devicon](https://github.com/devicons/devicon/tree/master/icons), with its license at `Images/tech/DEVICON-LICENSE.txt`. The Leaflet logo comes from [Simple Icons](https://github.com/simple-icons/simple-icons/blob/develop/icons/leaflet.svg), under [CC0](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md). Names and logos remain the property of their respective owners. Include new local logo files when staging changes for publication.
 
 ## Content and evidence
 
