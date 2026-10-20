@@ -8,7 +8,7 @@ Source repository: [lasitha-dev/adrs-website](https://github.com/lasitha-dev/adr
 
 Existing Sites showcase: [View ADRS on Sites](https://adrs-research-r26.cheekycedar16.chatgpt.site)
 
-The website presents the overall project, its four components, a research journey, four component dashboards, the searchable document archive, technology stack, team and contact form. Research Gaps, Literature Review and Methodology open as short, keyboard-accessible dialogs with links to the supplied PDFs. The forest green and warm paper theme preserves the agricultural and clinical character of the original draft. Technical evidence sits in expandable panels to keep the page readable.
+The website presents the overall project, its four components, a milestone schedule, four component dashboards, the searchable document archive, technology stack, team and contact form. Research Gaps, Literature Review and Methodology open as short, keyboard-accessible dialogs with links to the supplied PDFs. The forest green and warm paper theme preserves the agricultural and clinical character of the original draft. Technical evidence sits in expandable panels to keep the page readable.
 
 ## Contact email setup (Web3Forms)
 
@@ -53,6 +53,16 @@ The research paper reports different evaluation versions and scopes from the the
 
 The four original screenshots in `UI Dashboards/` are displayed without cropping, with keyboard-accessible tabs and a full-size dialog. Screen outputs are examples, not performance metrics or current official advisories. The smart-diagnosis copy follows the thesis's ResNet50 mask head rather than adopting the screenshot's Mask R-CNN label. The old animated background script is retained but is no longer loaded.
 
+## Milestones
+
+The Milestones section combines the supplied **2026 Regular Batch – Timeline of the RP Project** with **Milestones.png**. All 15 milestones have the published deadline or date range, including month-only dates for Project Initialization and Topic Assessment. A dropdown and schedule buttons select each milestone's description, marks allocation, completion status and related original documents. A plain schedule remains available when JavaScript is disabled.
+
+Edit `CONFIG.MILESTONES` in `js/config.js` to update the schedule. Use ISO dates (`YYYY-MM-DD`, or `YYYY-MM` where only the month is supplied), an optional `endDate` for assessment windows, and existing document IDs from `CONFIG.DELIVERABLES` or `CONFIG.GROUP_REPORT` for related files. Dates are formatted in UTC so they stay consistent across visitor time zones. Keep the `noscript` schedule in `index.html` in sync with changes.
+
+Marks follow the supplied milestone summary: proposal report and presentation share 12%; PP1 15%; PP2 18%; website 2%; final presentation/viva 20%; research paper 10%; final thesis 19%. The website allocation is not assigned to the draft thesis. No allocation is inferred for other items; these show **Not specified**. No overall total is claimed because the supplied allocations do not cover 100%.
+
+The project team confirmed completion through **Final Presentation and Viva**, overriding the screenshot's older in-progress label. Website Evaluation & Logbook Submission remains **Scheduled**, with no completion claim. Research Paper Submission, Final Thesis Submission and Publication Evidence remain **Upcoming**. These statuses are editorial fields, not automatically inferred from deadlines. The final checklist, final thesis and publication evidence are not linked to earlier revisions as substitutes.
+
 ## Documents
 
 The archive contains **17 original research documents**: 13 PDFs, three PPTX files and one ODP file. They are grouped and searchable by title, researcher, component and research stage. PDFs have View and Download actions; presentations download in their original formats.
@@ -88,7 +98,7 @@ The four researchers and both supervisors have supplied portraits from `Profile 
 
 ## Editing
 
-- `index.html`: overview, research journey, archive introduction and page structure.
+- `index.html`: overview, milestones, archive introduction and page structure.
 - `js/config.js`: component descriptions, methods, evidence, limitations, team and deliverables.
 - `css/style.css`: colours, typography, layout and responsive styling.
 - `js/main.js`: mobile navigation, document filtering, image tabs and accessible image dialog.

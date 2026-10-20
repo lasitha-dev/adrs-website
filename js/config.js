@@ -169,6 +169,181 @@ const CONFIG = {
       "email": "eishan.w@sliit.lk"
     }
   ],
+  // Dates and marks follow the supplied RP timeline and Milestones.png.
+  // Completion through Final Presentation and Viva was confirmed by the project team.
+  "MILESTONES": [
+    {
+      "id": "project-initialization",
+      "title": "Project initialization",
+      "startDate": "2025-11",
+      "description": "Form the research group, select the project topic and arrange supervisor allocation.",
+      "marks": null,
+      "documents": [
+        "project-charter"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "topic-assessment",
+      "title": "Topic Assessment Form (TAF)",
+      "startDate": "2026-01",
+      "description": "Submit the research topic assessment for approval.",
+      "marks": null,
+      "documents": [
+        "topic-assessment"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "proposal-submission",
+      "title": "Proposal submission",
+      "startDate": "2026-03-15",
+      "description": "Submit the proposed research problem, objectives, scope and methodology for the four ADRS components.",
+      "marks": "12% of final mark (shared)",
+      "documents": [
+        "proposal-01",
+        "proposal-02",
+        "proposal-03",
+        "proposal-04"
+      ],
+      "status": "completed",
+      "marksNote": "Combined allocation for the proposal report and presentation."
+    },
+    {
+      "id": "proposal-presentation",
+      "title": "Proposal presentation",
+      "startDate": "2026-03-16",
+      "endDate": "2026-03-18",
+      "description": "Present the research motivation, identified gaps, proposed solution and plan for evaluating each component.",
+      "marks": "12% of final mark (shared)",
+      "documents": [
+        "proposal-presentation"
+      ],
+      "status": "completed",
+      "marksNote": "Combined allocation for the proposal report and presentation."
+    },
+    {
+      "id": "checklist-submission",
+      "title": "Checklist submission",
+      "startDate": "2026-05-13",
+      "description": "Submit the required research checklist evidence. The available checklist portfolio covers PP1 and PP2 evidence for the repository, UI/UX demonstration and deployment.",
+      "marks": null,
+      "documents": [
+        "research-checklist"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "progress-presentation-1",
+      "title": "Progress presentation 1",
+      "startDate": "2026-05-11",
+      "endDate": "2026-05-13",
+      "description": "Demonstrate approximately 50% completion of the system, present initial research progress and outline the remaining development and evaluation work.",
+      "marks": "15% of final mark",
+      "documents": [
+        "progress-1"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "progress-presentation-2",
+      "title": "Progress presentation 2",
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-02",
+      "description": "Demonstrate approximately 90% completion of the system and report progress in integration, evaluation and preparation for the final assessment.",
+      "marks": "18% of final mark",
+      "documents": [
+        "progress-2"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "draft-thesis-submission",
+      "title": "Draft thesis submission",
+      "startDate": "2026-10-11",
+      "description": "Submit the draft thesis documenting the shared solution, research methods, component evaluations and limitations.",
+      "marks": null,
+      "documents": [
+        "group-thesis",
+        "thesis-01",
+        "thesis-02",
+        "thesis-03",
+        "thesis-04"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "website-submission",
+      "title": "Website submission",
+      "startDate": "2026-10-11",
+      "description": "Submit the project website presenting the research domain, milestones, documents, presentations, team and contact details.",
+      "marks": "2% of final mark",
+      "documents": [],
+      "status": "completed",
+      "marksNote": "This allocation applies to the website, not the draft thesis."
+    },
+    {
+      "id": "final-checklist-submission",
+      "title": "Final checklist submission",
+      "startDate": "2026-10-14",
+      "description": "Submit the final research checklist and the evidence required for the final assessment.",
+      "marks": null,
+      "documents": [],
+      "status": "completed"
+    },
+    {
+      "id": "final-presentation-viva",
+      "title": "Final presentation and viva",
+      "startDate": "2026-10-19",
+      "endDate": "2026-10-21",
+      "description": "Present the completed research and demonstrate the solution. Discuss individual contributions, methods, results and limitations during the viva.",
+      "marks": "20% of final mark",
+      "documents": [
+        "final-presentation"
+      ],
+      "status": "completed",
+      "marksNote": "Final assessment includes the demonstration, viva and website evaluation."
+    },
+    {
+      "id": "website-evaluation-logbook",
+      "title": "Website evaluation & logbook submission",
+      "startDate": "2026-10-19",
+      "endDate": "2026-10-21",
+      "description": "Present the project website for evaluation and submit the research logbook recording the project's work and progress.",
+      "marks": null,
+      "documents": [],
+      "status": "scheduled"
+    },
+    {
+      "id": "research-paper-submission",
+      "title": "Research paper submission",
+      "startDate": "2026-10-23",
+      "description": "Submit the research paper summarising the ADRS framework and its documented research findings.",
+      "marks": "10% of final mark",
+      "documents": [
+        "research-paper"
+      ],
+      "status": "upcoming"
+    },
+    {
+      "id": "final-thesis-submission",
+      "title": "Final thesis submission",
+      "startDate": "2026-10-28",
+      "description": "Submit the final thesis after incorporating the required review feedback and corrections.",
+      "marks": "19% of final mark",
+      "documents": [],
+      "status": "upcoming"
+    },
+    {
+      "id": "publication-evidence-submission",
+      "title": "Research paper publication evidence submission",
+      "startDate": "2026-12-01",
+      "description": "Submit the publication evidence required by the research programme.",
+      "marks": null,
+      "documents": [],
+      "status": "upcoming"
+    }
+  ],
   "GROUP_REPORT": {
     "id": "group-thesis",
     "title": "Common Integrated Solution Report",

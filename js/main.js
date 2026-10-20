@@ -1,6 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
   const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
   const assetURL = path => path.split('/').map(encodeURIComponent).join('/');
+  const milestoneSelect = document.querySelector('#milestone-select');
+  const milestoneList = document.querySelector('#milestone-list');
+  const milestoneDetail = document.querySelector('#milestone-detail');
+  const milestoneDate = value => new Intl.DateTimeFormat('en-GB', { ...(value.length === 7 ? {} : { day: 'numeric' }), month: value.length === 7 ? 'long' : 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${value.length === 7 ? `${value}-01` : value}T00:00:00Z`));
+  const milestoneStatuses = { completed: 'Completed', scheduled: 'Scheduled', upcoming: 'Upcoming' };
+  const milestoneStatus = milestone => `<span class="milestone-status status-${milestone.status}">${milestoneStatuses[milestone.status]}</span>`;
+  const milestoneDateRange = milestone => `<time datetime="${milestone.startDate}">${milestoneDate(milestone.startDate)}</time>${milestone.endDate ? ` – <time datetime="${milestone.endDate}">${milestoneDate(milestone.endDate)}</time>` : ''}`;
+  milestoneSelect.innerHTML = CONFIG.MILESTONES.map(milestone => `<option value="${milestone.id}">${escapeHTML(milestone.title)}</option>`).join('');
+  milestoneList.innerHTML = CONFIG.MILESTONES.map((milestone, index) => `<li><button type="button" data-milestone="${milestone.id}" aria-controls="milestone-detail" aria-pressed="false"><span class="milestone-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="milestone-row-copy"><strong>${escapeHTML(milestone.title)}</strong><span>${milestoneDateRange(milestone)}</span></span>${milestoneStatus(milestone)}</button></li>`).join('');
+  const selectMilestone = id => {
+    const milestone = CONFIG.MILESTONES.find(item => item.id === id);
+    const documents = milestone.documents.map(documentId => documentId === CONFIG.GROUP_REPORT.id ? CONFIG.GROUP_REPORT : CONFIG.DELIVERABLES.find(item => item.id === documentId));
+    milestoneSelect.value = id;
+    milestoneList.querySelectorAll('[data-milestone]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.milestone === id)));
+    milestoneDetail.innerHTML = `<p class="milestone-kicker">MILESTONE / ${String(CONFIG.MILESTONES.indexOf(milestone) + 1).padStart(2, '0')}</p><h3 id="milestone-title">${escapeHTML(milestone.title)}</h3><p class="milestone-description">${escapeHTML(milestone.description)}</p><dl class="milestone-facts"><div><dt>${milestone.startDate.length === 7 ? 'Scheduled month' : milestone.endDate ? 'Scheduled dates' : 'Submission deadline'}</dt><dd>${milestoneDateRange(milestone)}</dd></div><div><dt>Marks allocated</dt><dd>${escapeHTML(milestone.marks ?? 'Not specified')}${milestone.marksNote ? `<span class="milestone-marks-note">${escapeHTML(milestone.marksNote)}</span>` : ''}</dd></div><div><dt>Status</dt><dd>${milestoneStatus(milestone)}</dd></div></dl><div class="milestone-resources"><h4>Related documents</h4>${documents.length ? `<ul>${documents.map(item => `<li><a href="${escapeHTML(assetURL(item.url))}" ${item.format === 'PDF' ? 'target="_blank" rel="noopener noreferrer"' : 'download'}>${escapeHTML(item.title)} <span class="milestone-file-format">${escapeHTML(item.format)}${item.version ? ` · ${escapeHTML(item.version)}` : ''}</span><span aria-hidden="true">${item.format === 'PDF' ? '↗' : '↓'}</span><span class="sr-only">${item.format === 'PDF' ? ' (opens in a new tab)' : ' (download)'}</span></a></li>`).join('')}</ul>` : '<p>Supporting documents are not available here yet.</p>'}</div>`;
+  };
+  milestoneSelect.addEventListener('change', () => selectMilestone(milestoneSelect.value));
+  milestoneList.addEventListener('click', event => {
+    const button = event.target.closest('[data-milestone]');
+    if (!button) return;
+    selectMilestone(button.dataset.milestone);
+    // Keep the newly selected details visible when the schedule stacks on mobile.
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      milestoneDetail.focus({ preventScroll: true });
+      milestoneDetail.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+  });
+  selectMilestone('final-presentation-viva');
   const researchDialog = document.querySelector('#research-dialog');
   let researchTrigger;
   document.querySelectorAll('[data-research]').forEach(button => button.addEventListener('click', () => {
