@@ -55,7 +55,7 @@ The four original screenshots in `UI Dashboards/` are displayed without cropping
 
 ## Documents
 
-The archive contains **14 original research documents**: 11 PDFs, two PPTX files and one ODP file. They are grouped and searchable by title, researcher, component and research stage. PDFs have View and Download actions; presentations download in their original formats.
+The archive contains **17 original research documents**: 13 PDFs, three PPTX files and one ODP file. They are grouped and searchable by title, researcher, component and research stage. PDFs have View and Download actions; presentations download in their original formats.
 
 | Group | Original location | Contents |
 | --- | --- | --- |
@@ -63,8 +63,10 @@ The archive contains **14 original research documents**: 11 PDFs, two PPTX files
 | Research paper | `A_Multi_Stage_Artificial_Intelligence_Framework_for_Proactive_Livestock_Health_Monitoring_and_Outbreak_Surveillance.pdf` | Six-page paper with its full title and six authors |
 | Individual theses | `Individual Thesis/` | Four component theses, ordered 01–04 |
 | Research proposals | `Proposals/` | Four component proposals, dated March 2026 |
-| Presentations | `Presentations/` | Proposal (PPTX, 36 slides), progress I (ODP, 23 slides), progress II (PPTX, 12 slides) |
+| Presentations | `Presentations/` | Proposal (PPTX, 36 slides), progress I (ODP, 23 slides), progress II (PPTX, 12 slides), final presentation (PPTX, 8 slides) |
 | Topic assessment | `Topic Assessment Form.pdf` | 19-page group assessment form |
+| Checklist | `Checklist/ADRS_R26-SE-013_Checklist.pdf` | 10-page PP1/PP2 checklist evidence and deployment report |
+| Project charter | `Project Charter/Project Charter.pdf` | Six-page group project charter submission |
 
 The existing `docs/Group_Thesis_Completed.docx` remains a secondary download; it is a separate supplied revision from the draft PDF. The paper is presented without an unverified venue, acceptance status, DOI or publication date. Printed document months are distinguished from submission dates.
 
@@ -79,6 +81,10 @@ To add another approved document:
 5. If also publishing through Sites, update the separate asset list in `scratch/prepare-hosting.ps1`.
 
 Use confirmed dates, publication details and original files. Raw farm locations and clinical datasets should not be added to this public-facing archive.
+
+## Team profiles
+
+The four researchers and both supervisors have supplied portraits from `Profile Photos/`, a LinkedIn profile link and a visible, clickable email address. Researcher details live in `CONFIG.COMPONENTS`; supervisor details and roles live in `CONFIG.SUPERVISORS` in `js/config.js`. Preserve photo filenames and include the folder when publishing. LinkedIn links use direct profile URLs without tracking or authentication redirects. Wijenayake's supplied `gmail com` was normalized to `gmail.com`.
 
 ## Editing
 
@@ -139,7 +145,7 @@ python scripts/build-site.py
 python -m http.server 8765 --bind 127.0.0.1 --directory _site
 ```
 
-Open `http://127.0.0.1:8765/`. The packager includes `index.html`, the three named root PDFs, and tracked files in `css/`, `js/`, `Images/`, `docs/`, `Individual Thesis/`, `Proposals/`, `Presentations/`, and `UI Dashboards/`. Stage newly added assets with `git add` before running it. Build output, local Sites checkouts, scratch work, backups, credentials and generated sample documents are ignored by Git.
+Open `http://127.0.0.1:8765/`. The packager includes `index.html`, the three named root PDFs, and tracked files in `css/`, `js/`, `Images/`, `docs/`, `Individual Thesis/`, `Proposals/`, `Presentations/`, `Checklist/`, `Profile Photos/`, `Project Charter/`, and `UI Dashboards/`. Stage newly added assets with `git add` before running it. Build output, local Sites checkouts, scratch work, backups, credentials and generated sample documents are ignored by Git.
 
 If you recreate the repository, select **Settings → Pages → Build and deployment → Source → GitHub Actions** before pushing the deployment workflow.
 

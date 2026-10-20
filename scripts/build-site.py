@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / "_site"
 ASSET_DIRECTORIES = {
     "css", "js", "Images", "docs", "Individual Thesis", "Presentations",
-    "Proposals", "UI Dashboards",
+    "Proposals", "UI Dashboards", "Checklist", "Profile Photos", "Project Charter",
 }
 ROOT_FILES = {
     "index.html", "Final_Thesis_Draft.pdf", "Topic Assessment Form.pdf",

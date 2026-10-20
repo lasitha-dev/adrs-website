@@ -74,6 +74,9 @@ const CONFIG = {
       "short": "Image assessment",
       "initials": "LA",
       "owner": "A.L.M. Athulathmudali",
+      "photo": "Profile Photos/A.L.M. Athulathmudali.png",
+      "linkedin": "https://www.linkedin.com/in/lasitha-athulathmudali/",
+      "email": "lasithaathulathmudali98@gmail.com",
       "studentId": "IT21129544",
       "description": "Analyses cattle photographs for signs associated with foot-and-mouth disease, lumpy skin disease and mastitis. Detection, classification and lesion outlining provide supporting evidence for veterinary review.",
       "input": "Cattle photographs",
@@ -92,6 +95,9 @@ const CONFIG = {
       "short": "Wellness & BCS",
       "initials": "JW",
       "owner": "W.M.P.J. Wijenayake",
+      "photo": "Profile Photos/W.M.P.J. Wijenayake.jpg",
+      "linkedin": "https://www.linkedin.com/in/pramod-wijenayake-b1b580347/",
+      "email": "Pjwijenayaka@gmail.com",
       "studentId": "IT22194558",
       "description": "Combines daily productivity trends, body condition images and environmental context to flag sustained changes. Seven-day triage helps distinguish general wellness concerns and heat stress.",
       "input": "Daily logs, images & weather",
@@ -110,6 +116,9 @@ const CONFIG = {
       "short": "Geospatial analysis",
       "initials": "GS",
       "owner": "G.A. Sandaru",
+      "photo": "Profile Photos/G.A. Sandaru.jpg",
+      "linkedin": "https://www.linkedin.com/in/ayodhya-galappaththi-ba1aab3b0/",
+      "email": "a.sandarugalappathti@gmail.com",
       "studentId": "IT22258908",
       "description": "Places verified cases and historical disease reports in a spatial context. Maps, relative cell scores and geometric descriptors help veterinary officers explore local patterns and source records.",
       "input": "Verified cases & historical reports",
@@ -128,6 +137,9 @@ const CONFIG = {
       "short": "District risk estimation",
       "initials": "SK",
       "owner": "S.S. Kumarasinghe",
+      "photo": "Profile Photos/S.S. Kumarasinghe.jpeg",
+      "linkedin": "https://www.linkedin.com/in/siyumi-kumarasinghe-a9a88a24b/",
+      "email": "sathnarakumarasinghe@gmail.com",
       "studentId": "IT22221414",
       "description": "Combines surveillance history and climate information to estimate district-month occurrence risk for foot-and-mouth disease and lumpy skin disease across Sri Lanka’s 25 districts.",
       "input": "Surveillance history & climate data",
@@ -139,6 +151,22 @@ const CONFIG = {
       "screen": "forecast",
       "thesis": "thesis-04",
       "proposal": "proposal-04"
+    }
+  ],
+  "SUPERVISORS": [
+    {
+      "name": "Mrs. Dilani Lunugalage",
+      "role": "Supervisor",
+      "photo": "Profile Photos/Mrs. Dilani Lunugalage.jpeg",
+      "linkedin": "https://www.linkedin.com/in/dilani-lunugalage-84b78433/",
+      "email": "dilani.l@sliit.lk"
+    },
+    {
+      "name": "Mr. Eishan Weerasinghe",
+      "role": "Co-supervisor",
+      "photo": "Profile Photos/Mr. Eishan Weerasinghe.jpeg",
+      "linkedin": "https://www.linkedin.com/in/eishan-weerasinghe-08a2b8199/",
+      "email": "eishan.w@sliit.lk"
     }
   ],
   "GROUP_REPORT": {
@@ -173,12 +201,20 @@ const CONFIG = {
       "title": "Research proposals"
     },
     {
+      "id": "charter",
+      "title": "Project charter"
+    },
+    {
       "id": "presentation",
       "title": "Presentations"
     },
     {
       "id": "assessment",
       "title": "Topic assessment"
+    },
+    {
+      "id": "checklist",
+      "title": "Checklist"
     }
   ],
   "DELIVERABLES": [
@@ -342,6 +378,42 @@ const CONFIG = {
       "format": "PPTX",
       "bytes": 21992738,
       "slides": 12
+    },
+    {
+      "id": "final-presentation",
+      "title": "Final presentation",
+      "category": "presentation",
+      "url": "Presentations/ADRS Presentation-Final.pptx",
+      "description": "The group's final research presentation.",
+      "author": "ADRS research group · R26-SE-013",
+      "stage": "Final presentation",
+      "format": "PPTX",
+      "bytes": 3425590,
+      "slides": 8
+    },
+    {
+      "id": "project-charter",
+      "title": "Project charter",
+      "category": "charter",
+      "url": "Project Charter/Project Charter.pdf",
+      "description": "The group's project charter submission for ADRS.",
+      "author": "ADRS research group · R26-SE-013",
+      "stage": "Project charter",
+      "format": "PDF",
+      "bytes": 2128113,
+      "pages": 6
+    },
+    {
+      "id": "research-checklist",
+      "title": "ADRS research checklist",
+      "category": "checklist",
+      "url": "Checklist/ADRS_R26-SE-013_Checklist.pdf",
+      "description": "PP1 and PP2 checklist evidence covering the Git repository, UI/UX demonstration and deployment report.",
+      "author": "ADRS research group · R26-SE-013",
+      "stage": "Checklist submission",
+      "format": "PDF",
+      "bytes": 478803,
+      "pages": 10
     },
     {
       "id": "topic-assessment",

@@ -205,17 +205,25 @@ details[open] > summary > span[aria-hidden] { transform: rotate(45deg); }
 .archive-date-note { font-size: 10px; color: var(--muted); margin-top: 20px; }
 #document-empty { text-align: center; color: var(--muted); font-size: 13px; padding: 45px 20px; border: 1px dashed #b7c5a8; border-radius: 6px; }
 #document-empty .button { margin-top: 20px; }
-.team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
-.team-card { padding: 25px 20px; border-top: 1px solid #c8d3bd; }
-.team-avatar { width: 52px; height: 52px; border-radius: 50%; background: #e3ead9; color: #4d633d; display: grid; place-items: center; font-family: var(--serif); font-size: 19px; margin-bottom: 23px; }
+.team-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 22px; }
+.team-card { min-width: 0; padding: 25px 20px; border-top: 1px solid #c8d3bd; }
+.team-avatar { width: 96px; height: 96px; border-radius: 50%; background: #e3ead9; object-fit: cover; object-position: center 30%; margin-bottom: 23px; border: 3px solid var(--white); box-shadow: 0 0 0 1px #c8d3bd; }
 .team-component { color: #60724c; display: block; font-size: 8px; letter-spacing: .12em; margin-bottom: 9px; }
 .team-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 7px; overflow-wrap: anywhere; }
 .team-card p { font-size: 11px; color: var(--muted); margin-bottom: 9px; }
 .student-id { font-size: 9px; color: #687360; }
-.supervisors { border-top: 1px solid var(--line); margin-top: 25px; padding-top: 30px; display: flex; align-items: center; gap: 45px; }
-.supervisors > span { font-size: 8px; color: var(--muted); letter-spacing: .12em; }
-.supervisors strong { font-size: 12px; font-weight: 500; }
-.supervisors p > span { display: block; font-size: 10px; color: var(--muted); }
+.profile-links { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; margin-top: 14px; font-size: 11px; }
+.profile-links a { max-width: 100%; padding-block: 4px; color: var(--sage-dark); text-decoration: underline; text-underline-offset: 3px; }
+.profile-links a:hover { color: var(--forest); }
+.profile-email { overflow-wrap: anywhere; }
+.supervisors { border-top: 1px solid var(--line); margin-top: 25px; padding-top: 30px; }
+.supervisors > h3 { font: 500 10px var(--sans); color: var(--muted); letter-spacing: .12em; margin-bottom: 25px; }
+.supervisor-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 30px; }
+.supervisor-card { display: flex; align-items: flex-start; gap: 22px; min-width: 0; }
+.supervisor-card .team-avatar { flex-shrink: 0; margin-bottom: 0; }
+.supervisor-card > div { min-width: 0; }
+.supervisor-card h3 { font-size: 14px; font-weight: 600; }
+.supervisor-role { font-size: 11px; color: var(--muted); margin-top: 5px; }
 .site-footer { background: var(--forest); color: #c0ceba; padding: 44px 0 24px; }
 .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
 .site-footer .brand { color: var(--paper); font-size: 22px; }
@@ -436,8 +444,7 @@ dialog p { font-size: 11px; padding-top: 13px; flex-shrink: 0; }
   .team-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
   .team-card { padding: 22px 0; }
   .team-card h3 { font-size: 13px; }
-  .supervisors { gap: 20px; flex-wrap: wrap; }
-  .supervisors > span { width: 100%; }
+  .supervisor-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer-top { flex-wrap: wrap; gap: 16px 28px; }
   .footer-top .brand { width: 100%; margin-bottom: 8px; }
   .footer-bottom { flex-direction: column; gap: 7px; }
